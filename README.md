@@ -13,7 +13,7 @@
 
 _This repo is the successor to <https://github.com/artis3n/ansible-role-tailscale>._
 
-This collection provides a series of roles, plugins, and modules to manage your Tailscale Tailnet and Tailscale devices on Linux systems.
+This collection provides a series of roles, plugins, and modules to manage your Tailscale Tailnet and Tailscale devices on Linux and macOS systems.
 
 ```bash
 ansible-galaxy collection install artis3n.tailscale
@@ -29,6 +29,7 @@ Supported operating systems for Tailscale devices:
 - OpenSUSE
 - Oracle Linux
 - Raspbian
+- macOS (via Homebrew)
 
 See the [CI worfklow](https://github.com/artis3n/ansible-collection-tailscale/blob/main/.github/workflows/pull_request_target.yml) for the list of distribution versions actively tested in each pull request.
 
@@ -36,7 +37,7 @@ If you or your organization gets value out of this collection, I would very much
 
 ## Roles
 
-- [`artis3n.tailscale.machine`](/roles/machine/): Ansible role to install and configure Tailscale on a Linux server.
+- [`artis3n.tailscale.machine`](/roles/machine/): Ansible role to install and configure Tailscale on a Linux or macOS server.
 
 ## Plugins
 

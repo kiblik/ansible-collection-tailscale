@@ -19,8 +19,11 @@ tailscale_opensuse_family_distros:
   - "openSUSE Leap"
   - "openSUSE Tumbleweed"
 
+tailscale_darwin_distros:
+  - macOS
+
 tailscale_package: tailscale
-tailscale_service: tailscaled
+tailscale_service: tailscald
 
 tailscale_apt_dependencies:
   - gnupg

@@ -14,6 +14,8 @@
       fedora
       {%- elif ansible_facts.distribution == 'Archlinux' -%}
       arch
+      {%- elif ansible_facts.system == 'Darwin' -%}
+      darwin
       {%- elif ansible_facts.distribution in tailscale_opensuse_family_distros -%}
       opensuse
       {%- else -%}
@@ -29,5 +31,5 @@
   ansible.builtin.fail:
     msg: >
       Unsupported distribution: {{ ansible_facts.distribution }}.
-      Supported distributions are: Debian/Ubuntu, CentOS/RHEL/Rocky/Alma/Oracle, Fedora, Amazon Linux 2023+, Arch Linux, and OpenSUSE.
+      Supported distributions are: Debian/Ubuntu, CentOS/RHEL/Rocky/Alma/Oracle, Fedora, Amazon Linux 2023+, Arch Linux, OpenSUSE, and macOS.
   when: tailscale_distro_family == 'unknown'

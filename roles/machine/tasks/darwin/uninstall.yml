@@ -1,0 +1,25 @@
+---
+- name: Darwin | Stop and disable tailscaled service
+  become: true
+  community.general.homebrew_services:
+    name: "tailscale"
+    state: absent
+
+- name: Darwin | Remove Tailscale via Homebrew
+  become: true
+  community.general.homebrew:
+    name: "{{ tailscale_package }}"
+    state: absent
+    purge: true
+
+- name: Darwin | Clean up Tailscale daemon state and logs
+  become: true
+  ansible.builtin.file:
+    path: "/var/lib/tailscale"
+    state: absent
+
+- name: Darwin | Remove tailscaled config
+  become: true
+  ansible.builtin.file:
+    path: "/etc/default/tailscaled"
+    state: absent
