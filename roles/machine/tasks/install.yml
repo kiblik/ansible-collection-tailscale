@@ -42,7 +42,7 @@
     name: "{{ tailscale_service }}"
     state: started
     enabled: true
-  when: tailscale_distro_family != 'darwin'
+  # when: tailscale_distro_family != 'darwin'
 
 - name: Install | Fetch Tailscale status
   ansible.builtin.command: tailscale status --json

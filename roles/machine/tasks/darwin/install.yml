@@ -12,6 +12,8 @@
     name: "{{ tailscale_package }}"
     state: present
 
-- name: Darwin | Start and enable tailscaled service (user-space)
-  ansible.builtin.command: brew services start tailscale --user
-  changed_when: false
+# - name: Darwin | Start and enable tailscaled service (admin-space)
+#   become: true
+#   community.general.homebrew_services:
+#     name: "tailscale"
+#     state: present

@@ -1,7 +1,8 @@
 ---
 - name: Darwin | Stop and disable tailscaled service (user-space)
-  ansible.builtin.command: brew services stop tailscale --user
-  changed_when: false
+  community.general.homebrew_services:
+    name: "tailscale"
+    state: absent
 
 - name: Darwin | Remove Tailscale via Homebrew
   community.general.homebrew:
