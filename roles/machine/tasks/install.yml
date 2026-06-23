@@ -36,12 +36,13 @@
     group: "{{ ansible_facts.user_gid }}"
     mode: '0644'
 
-- name: Install | Enable Service
+- name: Install | Enable Service (Linux only)
   become: true
   ansible.builtin.service:
     name: "{{ tailscale_service }}"
     state: started
     enabled: true
+  when: tailscale_distro_family != 'darwin'
 
 - name: Install | Fetch Tailscale status
   ansible.builtin.command: tailscale status --json

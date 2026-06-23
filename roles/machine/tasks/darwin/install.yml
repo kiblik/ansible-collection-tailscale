@@ -7,28 +7,11 @@
       macOS {{ ansible_facts['distribution_major_version'] }}
       is not supported. Tailscale requires macOS 12.0 (Monterey) or later.
 
-- name: Darwin | Check Homebrew installation
-  ansible.builtin.command: brew --version
-  changed_when: false
-  failed_when: false
-  register: brew_check
-
-- name: Darwin | Fail if Homebrew is not installed
-  ansible.builtin.fail:
-    msg: >-
-      Homebrew is not installed. Please install Homebrew first (https://brew.sh)
-      {{ brew_check.stdout_lines | join('\n') }}
-      {{ brew_check.stderr_lines | join('\n') }}
-  when: brew_check.rc != 0
-
 - name: Darwin | Install Tailscale via Homebrew
-  become: true
   community.general.homebrew:
     name: "{{ tailscale_package }}"
     state: present
 
-- name: Darwin | Start and enable tailscaled service
-  become: true
-  community.general.homebrew_services:
-    name: "tailscale"
-    state: present
+- name: Darwin | Start and enable tailscaled service (user-space)
+  ansible.builtin.command: brew services start tailscale --user
+  changed_when: false
